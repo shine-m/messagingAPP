@@ -100,17 +100,24 @@ export default function Header() {
   return (
     <>
       <div className="px-3 ">
-        <Navbar color="light" expand="sm" className="position-relative">
+        <Navbar color="light" expand="lg" className="position-relative">
           <NavbarToggler onClick={() => setIsOpen(!isOpen)} />
-          <Collapse
+          {/* <Collapse
             isOpen={isOpen}
             navbar
             className=" bg-light shadow position-absolute"
             style={{ width: "30vw", top: "20%", zIndex: "10" }}
+          > */}
+          <Collapse
+            isOpen={isOpen}
+            navbar
+            className=" position-absolute"
+            style={{ top: "100%", zIndex: "10", width: "fit-content" }}
           >
             <Nav
               navbar
-              className="mx-auto my-2 d-flex flex-column flex-sm-row align-items-center gap-2"
+              className="p-1 d-flex flex-column align-items-start gap-2"
+              style={{ padding: "2px" }}
             >
               {/* Login */}
               {!isAuthenticUser && (
