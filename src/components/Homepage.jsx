@@ -129,28 +129,26 @@ export default function Home() {
           </div>
         </div>
         <div className="col-12 col-sm-3 mt-2">
-          <div>
-            <ImageCard uid={currentUid} />{" "}
-          </div>
+          <div>{/* <ImageCard uid={currentUid} />{" "} */}</div>
           <div
-            style={{
-              background: "#ede32b58",
-              width: "25vw",
-              //   height: "600px",
-              height: "80vh",
-              overflow: "auto", // optional: crop if image is bigger
-              display: "flex",
-              marginTop: "3vh", // was 10 before adding profile menu
-              // alignItems: "center",
-              justifyContent: "center",
-              border: "2px groove",
-              borderRadius: "6px",
-              boxShadow:
-                " 1vw 2vh 18px 4px rgba(0, 0, 255, 0.3), inset -1vw -4vh 18px 4px rgba(38, 138, 188, 0.3)",
-            }}
+          // style={{
+          //   background: "#ede32b58",
+          //   width: "25vw",
+          //   //   height: "600px",
+          //   height: "80vh",
+          //   overflow: "auto", // optional: crop if image is bigger
+          //   display: "flex",
+          //   marginTop: "3vh", // was 10 before adding profile menu
+          //   // alignItems: "center",
+          //   justifyContent: "center",
+          //   border: "2px groove",
+          //   borderRadius: "6px",
+          //   boxShadow:
+          //     " 1vw 2vh 18px 4px rgba(0, 0, 255, 0.3), inset -1vw -4vh 18px 4px rgba(38, 138, 188, 0.3)",
+          // }}
           >
             {/* <h1>Connections</h1> */}
-            <Chat setSelectedUser={setSelectedUser} />
+            <Chat setSelectedUser={setSelectedUser} currentUid={currentUid} />
           </div>
         </div>
       </div>
