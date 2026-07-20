@@ -22,7 +22,14 @@ body {
   background: var(--bg);
   color: var(--text);
 }
-
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* Safari */
+  background: rgba(255, 255, 255, 0.15); /* optional tint */
+  z-index: 40;
+}
 .app-shell {
   max-width: 640px;
   margin: 0 auto;

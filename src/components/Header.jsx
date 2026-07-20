@@ -64,24 +64,13 @@ export default function Header() {
     if (savedAuth && savedUid && location.pathname == "/") {
       navigate(`/home/${savedUid}`);
     }
-    // }, [navigate]);
   }, []);
-
-  // const logoutAction = () => {
-  //   setIsLogOutOpen(true);
-  //   localStorage.removeItem("currentuid");
-  //   localStorage.removeItem("isAuthenticUser");
-  //   setIsAuthenticUser(false);
-  //   setUid("");
-  //   navigate("/");
-  // };
 
   const checkCred = async (e) => {
     e.preventDefault();
     console.log(uiref.current.value);
     console.log(passref.current.value);
     const value = await getValueByKey(uiref.current.value);
-    // console.log("Final Value:", value);
     if (value === passref.current.value) {
       setLoginMOpen(false);
       //
@@ -96,77 +85,96 @@ export default function Header() {
       alert("wrong uid or password");
     }
   };
+  // these two lines are meant for hiding collapse when clicked outside navitem
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      // Only on mobile
+      if (
+        window.innerWidth < 992 && // Bootstrap lg breakpoint
+        isOpen &&
+        menuRef.current &&
+        !menuRef.current.contains(e.target)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isOpen]);
 
   return (
     <>
       <div className="px-3 ">
         <Navbar color="light" expand="lg" className="position-relative">
-          <NavbarToggler
-            onClick={() => setIsOpen(!isOpen)}
-            style={{ zIndex: 20 }}
-          />
-          {/* <Collapse
-            isOpen={isOpen}
-            navbar
-            className=" bg-light shadow position-absolute"
-            style={{ width: "30vw", top: "20%", zIndex: "10" }}
-         
-              {/* Login */}
-          <Collapse
-            isOpen={isOpen}
-            navbar
-            className="position-absolute"
-            style={{ top: "100%", zIndex: "10", width: "fit-content" }}
-          >
-            <Nav
-              navbar
-              className="p-1 d-flex flex-column align-items-start gap-2"
-              style={{ padding: "2px" }}
-            >
-              {!isAuthenticUser && (
-                <NavItem className="nav-btn-wrapper">
-                  <Button
-                    className="nav-btn "
-                    onClick={() => setLoginMOpen(true)}
-                  >
-                    Login
-                  </Button>
-                </NavItem>
-              )}
-              {/* Sign Up */}
-              {!isAuthenticUser && (
-                <NavItem className="nav-btn-wrapper">
-                  <Button
-                    className="nav-btn "
-                    onClick={() => setIsSignUpOpen(true)}
-                  >
-                    Sign Up
-                  </Button>
-                </NavItem>
-              )}
-              {/* About */}
-              <NavItem className="nav-btn-wrapper">
-                <Button
-                  className="nav-btn"
-                  onClick={() => (window.location.href = "/")}
-                >
-                  About
-                </Button>
-              </NavItem>
+          <div ref={menuRef}>
+            <NavbarToggler
+              onClick={() => setIsOpen(!isOpen)}
+              style={{ zIndex: 50 }}
+            />
 
-              {/* Log Out */}
-              {isAuthenticUser && (
+            <Collapse
+              isOpen={isOpen}
+              className="position-absolute"
+              style={{ top: "100%", zIndex: "10", width: "fit-content" }}
+            >
+              <Nav
+                navbar
+                className={`p-1 d-flex ${
+                  isOpen
+                    ? "flex-column align-items-start "
+                    : "flex-row align-items-start "
+                } gap-2`}
+                style={{ padding: "2px" }}
+              >
+                {!isAuthenticUser && (
+                  <NavItem className="nav-btn-wrapper">
+                    <Button
+                      className="nav-btn "
+                      onClick={() => setLoginMOpen(true)}
+                    >
+                      Login
+                    </Button>
+                  </NavItem>
+                )}
+                {/* Sign Up */}
+                {!isAuthenticUser && (
+                  <NavItem className="nav-btn-wrapper">
+                    <Button
+                      className="nav-btn "
+                      onClick={() => setIsSignUpOpen(true)}
+                    >
+                      Sign Up
+                    </Button>
+                  </NavItem>
+                )}
+                {/* About */}
                 <NavItem className="nav-btn-wrapper">
                   <Button
                     className="nav-btn"
-                    onClick={() => setIsLogOutOpen(true)}
+                    onClick={() => (window.location.href = "/")}
                   >
-                    Log Out
+                    About
                   </Button>
                 </NavItem>
-              )}
-            </Nav>
-          </Collapse>
+
+                {/* Log Out */}
+                {isAuthenticUser && (
+                  <NavItem className="nav-btn-wrapper">
+                    <Button
+                      className="nav-btn"
+                      onClick={() => setIsLogOutOpen(true)}
+                    >
+                      Log Out
+                    </Button>
+                  </NavItem>
+                )}
+              </Nav>
+            </Collapse>
+          </div>
           <div className="flex-grow-1"></div>
           <NavbarBrand
             className="ms-auto z-1"

@@ -303,10 +303,9 @@ import { getAllKeyValues } from "../backend/appwriteFunctions";
 import { useState, useEffect } from "react";
 import ImageCard from "./profile";
 
-export default function Chat({ setSelectedUser, currentUid }) {
+export default function Chat({ setSelectedUser, currentUid, hideDrawer }) {
   const [items, setItems] = useState([]);
   const [count, setCount] = useState(0);
-  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
@@ -323,20 +322,15 @@ export default function Chat({ setSelectedUser, currentUid }) {
 
   const handleItemClick = (otheruser) => {
     setSelectedUser(otheruser);
+    hideDrawer();
   };
-
+  //starting to edit
   return (
     <div
       style={{
-        position: "fixed",
-        right: 0,
-        top: 0,
-        height: "100vh",
-        width: "25vw",
-        transform: visible ? "translateX(0)" : "translateX(100%)",
-        transition: "transform 0.3s ease",
+        height: "100%",
+        width: "100%",
         backgroundColor: "white",
-        zIndex: 100,
         overflowY: "auto",
       }}
     >
@@ -452,19 +446,6 @@ export default function Chat({ setSelectedUser, currentUid }) {
             </li>
           ))}
       </ul>
-
-      <button
-        onClick={() => setVisible(!visible)}
-        style={{
-          position: "fixed",
-          left: "-35px",
-          top: "50%",
-          zIndex: 101,
-          cursor: "pointer",
-        }}
-      >
-        {visible ? ">" : "<"}
-      </button>
     </div>
   );
 }
