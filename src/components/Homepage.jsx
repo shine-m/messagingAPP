@@ -68,33 +68,13 @@ export default function Home() {
 
   // console.log("uid", passedUid, "other uid", selectedUser);
   return (
-    <div className="container">
+    <div
+      className="container"
+      style={{ maxHeight: "100vh", maxWidth: "100vw" }}
+    >
       <div className="row">
         <div className="col-12 col-sm-9 me-auto">
           <div className="row min-vh-100">
-            {/* <div className="d-flex align-items-center justify-content-center  gap-3"> */}
-            {/* <Button onClick={() => setcount((parseInt(count, 10) || 1) - 1)}> */}
-            {/* <Button onClick={() => dispatch(dec())}>
-                <h3>-</h3>
-              </Button>
-              <span
-                style={{ background: "", borderRadius: "30%", padding: "10px" }}
-              >
-                <h1 className="m-0">
-                  <input
-                    type="number"
-                    style={{ width: "100px" }}
-                    value={count}
-                    onChange={(e) => {
-                      dispatch(inpvalue(e.target.value));
-                    }}
-                  ></input>
-                </h1>
-              </span>
-              <Button onClick={() => dispatch(inc())}>
-                <h3>+</h3>
-              </Button>
-            </div> */}
             <div
               style={{
                 width: "80vw",
@@ -110,10 +90,6 @@ export default function Home() {
               <Image count={count} />
               {/* comment this line to hide erotic images */}
               {selectedUser && (
-                // <ChatWindow
-                //   otherUser={selectedUser}
-                //   currentUser={{ uid: passedUid }}
-                // /> to use this uncomment the import
                 <ChatWindow
                   chatId={
                     passedUid > selectedUser.uid
