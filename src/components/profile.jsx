@@ -1,6 +1,7 @@
 const styles = {
   card: {
-    width: "160px",
+    width: "40vw",
+    height: "50vw",
     textAlign: "center",
     padding: "8px 12px 1px 12px",
     borderRadius: "12px",
@@ -8,8 +9,8 @@ const styles = {
     cursor: "pointer",
   },
   avatarWrapper: {
-    width: "120px",
-    height: "120px",
+    width: "35vw",
+    height: "35vw",
     borderRadius: "50%",
     display: "flex",
     alignItems: "center",
@@ -24,14 +25,15 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    fontSize: "72px", // fills 120px avatar
+    // fontSize: "72px",
+    fontSize: "clamp(24px, 30vw, 100px)",
     fontWeight: "700",
     lineHeight: "1",
     userSelect: "none",
   },
   image: {
-    width: "120px",
-    height: "120px",
+    width: "35vw",
+    height: "35vw",
     borderRadius: "50%", // makes image circular
     objectFit: "cover",
     cursor: "pointer",
@@ -39,7 +41,7 @@ const styles = {
   },
   title: {
     marginTop: "2px",
-    fontSize: "16px",
+    fontSize: "clamp(24px, 5vw, 72px)",
     fontWeight: "600",
   },
 };

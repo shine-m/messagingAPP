@@ -50,9 +50,6 @@ function usePersistentState(key, initialState) {
 
   return [state, setState];
 }
-// import React, { useEffect, useRef, useState } from "react";
-// import { useParams } from "react-router-dom";
-// import { useSelector, useDispatch } from "react-redux";
 
 export default function Home() {
   const { passedUid } = useParams();
@@ -90,6 +87,9 @@ export default function Home() {
       setChatOpen(false); // swipe right
     }
   };
+
+  const DRAWER_WIDTH = "60vw";
+  const HOOK_WIDTH = "5vw";
 
   return (
     <div
@@ -138,8 +138,11 @@ export default function Home() {
         style={{
           position: "fixed",
           top: 0,
-          right: chatOpen ? 0 : "-270px",
-          width: "300px",
+          // right: chatOpen ? 0 : "-270px",
+          // width: "300px",
+          right: chatOpen ? "0" : `calc(-${DRAWER_WIDTH} + ${HOOK_WIDTH})`,
+
+          width: DRAWER_WIDTH,
           height: "100vh",
           background: "#fff",
           transition: "right 0.3s ease",
