@@ -152,23 +152,43 @@ export default function Home() {
         }}
       >
         {/* Drawer Hook */}
+
         <div
           onClick={() => setChatOpen((prev) => !prev)}
           style={{
             position: "absolute",
-            left: "-30px",
+            left: "-12px",
             top: "50%",
             transform: "translateY(-50%)",
-            width: "30px",
-            height: "90px",
-            background: "#ddd",
-            borderRadius: "12px 0 0 12px",
+
+            width: "12px",
+            height: "120px",
+
+            background: "linear-gradient(to bottom, #74ebd5, #9face6)",
+
+            borderRadius: "20px 0 0 20px",
+
             cursor: "pointer",
+
+            boxShadow: "0 0 10px rgba(0,0,0,0.25)",
+
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            fontWeight: "bold",
-            userSelect: "none",
+
+            transition: "all 0.25s ease",
+
+            background: "aqua",
+            width: "3vw",
+            height: "100vh",
+            left: "0px",
+            zIndex: 1000,
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.width = "18px";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.width = "12px";
           }}
         >
           {chatOpen ? ">" : "<"}
@@ -183,64 +203,3 @@ export default function Home() {
     </div>
   );
 }
-
-// export default function Home() {
-//   const { passedUid } = useParams();
-//   const [currentUid, setCurrentUid] = usePersistentState(
-//     "currentuid",
-//     passedUid
-//   );
-//   useEffect(() => {
-//     if (passedUid) setCurrentUid(passedUid);
-//   }, [passedUid]);
-
-//   const count = useSelector((state) => state.counter.count);
-//   const dispatch = useDispatch();
-
-//   const [selectedUser, setSelectedUser] = useState(null);
-
-//   return (
-//     <div
-//       className="container"
-//       style={{ maxHeight: "100vh", maxWidth: "100vw" }}
-//     >
-//       <div className="row">
-//         <div className="col-12 col-sm-9 me-auto">
-//           <div className="row min-vh-100">
-//             <div
-//               style={{
-//                 width: "80vw",
-//                 //   height: "600px",
-//                 height: "100vh",
-//                 overflow: "auto", // optional: crop if image is bigger
-//                 display: "flex",
-//                 margin: "auto",
-//                 // alignItems: "center",
-//                 justifyContent: "center",
-//               }}
-//             >
-//               <Image count={count} />
-//               {selectedUser && (
-//                 <ChatWindow
-//                   chatId={
-//                     passedUid > selectedUser.uid
-//                       ? passedUid + selectedUser.uid
-//                       : selectedUser.uid + passedUid
-//                   }
-//                   currentUserId={passedUid}
-//                   currentUserName={passedUid}
-//                   selectedUser={selectedUser}
-//                 />
-//               )}
-//             </div>
-//           </div>
-//         </div>
-//         <div className="col-12 col-sm-3 mt-2">
-//           <div>
-//             <Chat setSelectedUser={setSelectedUser} currentUid={currentUid} />
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }

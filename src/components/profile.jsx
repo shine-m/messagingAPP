@@ -41,8 +41,8 @@ const styles = {
   },
   title: {
     marginTop: "2px",
-    fontSize: "clamp(24px, 5vw, 72px)",
-    fontWeight: "600",
+    fontSize: "clamp(2px, 4vw, 72px)",
+    fontWeight: "400",
   },
 };
 import { useNavigate } from "react-router-dom";
