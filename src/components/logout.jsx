@@ -6,6 +6,7 @@ export default function LogOut({
   toggleOpen,
   voidauth,
   removeUid,
+  closeCollapse,
 }) {
   const navigate = useNavigate();
 
@@ -15,6 +16,7 @@ export default function LogOut({
     removeUid();
     voidauth();
     toggleOpen();
+    closeCollapse();
     navigate("/");
   }
   return (

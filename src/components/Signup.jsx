@@ -16,7 +16,12 @@ import {
 import { saveKeyValue } from "../backend/appwriteFunctions";
 import { useNavigate } from "react-router-dom";
 
-export default function Signup({ isSignUpOpen, onClose, setIsAuthenticUser }) {
+export default function Signup({
+  isSignUpOpen,
+  onClose,
+  setIsAuthenticUser,
+  closeCollapse,
+}) {
   const uiref = useRef(null);
   const passref = useRef(null);
   const nameref = useRef(null);
@@ -47,7 +52,7 @@ export default function Signup({ isSignUpOpen, onClose, setIsAuthenticUser }) {
           localStorage.setItem("isAuthenticUser", JSON.stringify(true));
 
           setIsAuthenticUser(true); // this function has been passed via props
-
+          closeCollapse();
           navigate(`/home/${uiref.current.value}`);
 
           onClose(); // function passed here through props

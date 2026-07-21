@@ -80,6 +80,7 @@ export default function Header() {
       setUid(uiref.current.value);
       //
       dispatch(updateuid(uiref.current.value));
+      setIsOpen(false);
       navigate(`/home/${uiref.current.value}`);
     } else {
       alert("wrong uid or password");
@@ -88,28 +89,33 @@ export default function Header() {
   // these two lines are meant for hiding collapse when clicked outside navitem
   const menuRef = useRef(null);
 
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      // Only on mobile
-      if (
-        window.innerWidth < 992 && // Bootstrap lg breakpoint
-        isOpen &&
-        menuRef.current &&
-        !menuRef.current.contains(e.target)
-      ) {
-        setIsOpen(false);
-      }
-    };
+  // useEffect(() => {
+  //   const handleClickOutside = (e) => {
+  //     // Only on mobile
+  //     if (
+  //       window.innerWidth < 992 && // Bootstrap lg breakpoint
+  //       isOpen &&
+  //       menuRef.current &&
+  //       !menuRef.current.contains(e.target)
+  //     ) {
+  //       setIsOpen(false);
+  //     }
+  //   };
 
-    document.addEventListener("mousedown", handleClickOutside);
+  //   document.addEventListener("mousedown", handleClickOutside);
 
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isOpen]);
+  //   return () => document.removeEventListener("mousedown", handleClickOutside);
+  // }, [isOpen]);
 
   return (
     <>
       <div className="px-3 ">
-        <Navbar color="light" expand="lg" className="position-relative">
+        <Navbar
+          color="light"
+          expand="lg"
+          className="position-relative"
+          style={{ zIndex: 50 }}
+        >
           <div ref={menuRef}>
             <NavbarToggler
               onClick={() => setIsOpen(!isOpen)}
@@ -239,8 +245,10 @@ export default function Header() {
           onClose={() => setIsSignUpOpen(false)}
           setIsAuthenticUser={setIsAuthenticUser}
           setUid={() => setUid("")}
+          closeCollapse={() => setIsOpen(false)}
         />
         <LogOut
+          closeCollapse={() => setIsOpen(false)}
           logOutWindowOpen={islogOutOpen}
           toggleOpen={() => setIsLogOutOpen(!islogOutOpen)}
           voidauth={() => setIsAuthenticUser(false)}
