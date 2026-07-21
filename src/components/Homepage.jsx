@@ -95,7 +95,7 @@ export default function Home() {
     <div
       className="container"
       style={{
-        maxHeight: "100vh",
+        maxHeight: "90vh",
         maxWidth: "100vw",
       }}
     >

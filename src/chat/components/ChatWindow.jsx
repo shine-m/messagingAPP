@@ -22,7 +22,7 @@ export default function ChatWindow({
   } = useChatMessages(chatId);
 
   return (
-    <div className="chat-window">
+    <div className="chat-window" style={{ maxHeight: "calc(100vh - 64px)" }}>
       <div className="chat-header">
         <span>{selectedUser.name}</span>
         <NavArrows

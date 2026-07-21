@@ -1,16 +1,16 @@
 const styles = {
   card: {
-    width: "40vw",
-    height: "50vw",
+    width: "30vw",
+    height: "30vw",
     textAlign: "center",
-    padding: "8px 12px 1px 12px",
+    padding: "1vw 2vw 2vw 1vw",
     borderRadius: "12px",
     boxShadow: "0 2px 4px 4px rgba(236, 170, 36, 0.81)",
     cursor: "pointer",
   },
   avatarWrapper: {
-    width: "35vw",
-    height: "35vw",
+    width: "28vw",
+    height: "28vw",
     borderRadius: "50%",
     display: "flex",
     alignItems: "center",
@@ -32,8 +32,8 @@ const styles = {
     userSelect: "none",
   },
   image: {
-    width: "35vw",
-    height: "35vw",
+    width: "27vw",
+    height: "27vw",
     borderRadius: "50%", // makes image circular
     objectFit: "cover",
     cursor: "pointer",
@@ -43,12 +43,15 @@ const styles = {
     marginTop: "2px",
     fontSize: "clamp(2px, 4vw, 72px)",
     fontWeight: "400",
+    paddingInline: "2px",
+    wordWrap: "break-word",
   },
 };
 import { useNavigate } from "react-router-dom";
 import { retriveValueByKey } from "../backend/appwriteFunctions";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import Background from "./Background";
 
 const ImageCard = ({ uid }) => {
   const navigate = useNavigate();
@@ -71,19 +74,43 @@ const ImageCard = ({ uid }) => {
     loadprofilepic();
   }, [uid]);
   return (
-    <div style={styles.card}>
-      <div style={styles.avatarWrapper} onClick={handleClick}>
-        {imageurl ? (
-          <img src={imageurl} alt="Profile picture" style={styles.image} />
-        ) : (
-          // <span style={styles.placeholderText}>Profile</span>
-          <span style={styles.placeholderText}>
-            {username?.[0]?.toUpperCase() || "?"}
-          </span>
-        )}
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <div style={styles.card}>
+        <div style={styles.avatarWrapper} onClick={handleClick}>
+          {imageurl ? (
+            <img src={imageurl} alt="Profile picture" style={styles.image} />
+          ) : (
+            // <span style={styles.placeholderText}>Profile</span>
+            <span style={styles.placeholderText}>
+              {username?.[0]?.toUpperCase() || "?"}
+            </span>
+          )}
+        </div>
       </div>
+      <div
+        style={{
+          maxWidth: "50vw",
+          marginTop: "10px",
+          backgroundColor: "#6beef79e",
+          width: "100%",
+          display: "flex",
+          // flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          boxShadow: "0 0 15px rgba(0, 0, 0, 1)",
 
-      <h4 style={styles.title}>{username}</h4>
+          borderRadius: "20px",
+        }}
+      >
+        <h4 style={{ ...styles.title, maxWidth: "48vw" }}>{username}</h4>
+      </div>
     </div>
   );
 };

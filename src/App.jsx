@@ -38,7 +38,10 @@ function AnimateRoutes() {
 function App() {
   return (
     <BrowserRouter>
-      <Header />
+      <div style={{ maxHeight: "100vh" }}>
+        <Header />
+      </div>
+
       <AnimateRoutes />
     </BrowserRouter>
   );
